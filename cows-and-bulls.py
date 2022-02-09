@@ -1,4 +1,5 @@
 import random
+from webbrowser import get
 
 def gen_string():
     gen_number = str(random.randint(0,9))
@@ -11,11 +12,13 @@ def gen_string():
     return gen_number
 
 
-def get_user_num():
+def test_user_num():
     proceed = True
     user_number = ""
     while proceed:
-        user_number = input("Enter 4 different digits, please ")
+        user_number = input("Enter 4 different digits, please (q - to exit) ")
+        if user_number in ["q", "Q"]:
+            break
         if len(user_number) != 4:
             print("You entered more or less 4 digits ")
             continue
@@ -35,7 +38,7 @@ def get_user_num():
     return user_number
 
 
-def compar_num(user, gen):
+def print_cows_bulls(user, gen):
     c = 0
     b = 0
     for i in range(0, 4):
@@ -47,10 +50,12 @@ def compar_num(user, gen):
     print("cows = ", c, ", bulls = ", b)
 
 gen_num = gen_string()
-user_num = get_user_num()
+user_num = test_user_num()
 
 while gen_num != user_num:
-    compar_num(user_num, gen_num)
-    user_num = get_user_num()
+    if user_num in ["q", "Q"]:
+        exit()
+    print_cows_bulls(user_num, gen_num)
+    user_num = test_user_num()
 
 print("You win! the number is ", gen_num)
