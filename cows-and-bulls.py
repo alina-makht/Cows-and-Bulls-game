@@ -1,5 +1,4 @@
 import random
-from webbrowser import get
 
 def gen_string():
     gen_number = str(random.randint(0,9))
